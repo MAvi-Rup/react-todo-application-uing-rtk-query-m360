@@ -1,15 +1,16 @@
-import { Form, Input, Select } from "antd";
-import { Option } from "antd/es/mentions";
-import { Button } from "antd/es/radio";
-import { useState } from "react";
+import { Button, Form, Input, Select } from "antd";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/features/TaskFeatures/taskSlice";
+
+const { Option } = Select;
 
 const AddTaskForm = () => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskPriority, setTaskPriority] = useState("");
   const dispatch = useDispatch();
+  const [lastId, setLastId] = useState(0);
 
   const handleReset = () => {
     setTaskTitle("");
@@ -17,17 +18,25 @@ const AddTaskForm = () => {
     setTaskPriority("");
   };
 
-  const handleTaskAdded = (e) => {
-    e.preventDefault();
+  const handleTaskAdded = () => {
+    const newId = lastId + 1;
+    console.log("New Task added:");
     dispatch(
-      addTask({ taskTitle, taskDescription, taskPriority, completed: false })
+      addTask({
+        id: newId,
+        taskTitle,
+        taskDescription,
+        taskPriority,
+        completed: false,
+      })
     );
     handleReset();
+    setLastId(newId);
   };
 
   return (
     <div>
-      <Form layout="inline" onSubmit={handleTaskAdded}>
+      <Form layout="inline" onFinish={handleTaskAdded}>
         <Form.Item>
           <Input
             placeholder="Add Title"
@@ -54,7 +63,7 @@ const AddTaskForm = () => {
             <Option value="high">High</Option>
           </Select>
         </Form.Item>
-        <Form.Item>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
