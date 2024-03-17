@@ -1,4 +1,5 @@
 import { Button, Form, Input, Select } from "antd";
+import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/features/TaskFeatures/taskSlice";
@@ -8,7 +9,7 @@ const { Option } = Select;
 const AddTaskForm = () => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
-  const [taskPriority, setTaskPriority] = useState("");
+  const [taskPriority, setTaskPriority] = useState("Low");
   const dispatch = useDispatch();
   const [lastId, setLastId] = useState(0);
 
@@ -36,17 +37,24 @@ const AddTaskForm = () => {
 
   return (
     <div>
-      <Form layout="inline" onFinish={handleTaskAdded}>
+      <Form
+        layout="inline"
+        onFinish={handleTaskAdded}
+        style={{ maxWidth: "100%", margin: "0 auto" }}
+        className="responsive-form"
+      >
         <Form.Item>
           <Input
             placeholder="Add Title"
+            required
             value={taskTitle}
             onChange={(e) => setTaskTitle(e.target.value)}
           />
         </Form.Item>
         <Form.Item>
-          <Input
+          <TextArea
             placeholder="Description"
+            required
             style={{ width: 320 }}
             value={taskDescription}
             onChange={(e) => setTaskDescription(e.target.value)}
