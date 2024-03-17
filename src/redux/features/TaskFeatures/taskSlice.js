@@ -13,12 +13,13 @@ export const taskSlice = createSlice({
         },
 
         completeTask: (state, action) => {
-            const { id } = action.payload;
-            const index = state.taskList.findIndex(task => task.id === id);
-            if (index !== -1) {
-                state.taskList[index].completed = true;
+            const id = action.payload;
+            const taskToUpdate = state.taskList.find(task => task.id === id);
+            if (taskToUpdate) {
+                taskToUpdate.completed = !taskToUpdate.completed;
             }
         },
+
 
         deleteTask: (state, action) => {
             const idToDelete = action.payload;

@@ -19,6 +19,13 @@ h1 {
   color: #0088cc;
 }
 
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #0b4c6dcc;
+}
+
 p {
   margin-top: 20px;
   line-height: 1.6;

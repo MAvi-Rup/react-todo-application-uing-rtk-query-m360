@@ -1,5 +1,5 @@
 import { Button, Form, Input, Select } from "antd";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../redux/features/TaskFeatures/taskSlice";
 
@@ -58,9 +58,9 @@ const AddTaskForm = () => {
             onChange={(value) => setTaskPriority(value)}
             style={{ width: 120 }}
           >
-            <Option value="low">Low</Option>
-            <Option value="medium">Medium</Option>
-            <Option value="high">High</Option>
+            <Option value="Low">Low</Option>
+            <Option value="Medium">Medium</Option>
+            <Option value="High">High</Option>
           </Select>
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

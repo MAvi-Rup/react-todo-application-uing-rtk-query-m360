@@ -1,5 +1,4 @@
 import { Button, List } from "antd";
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   completeTask,
@@ -20,29 +19,47 @@ const TaskList = () => {
 
   return (
     <div>
-      <h2>Tasks</h2>
+      <h2>All Tasks</h2>
       <List
         dataSource={tasks}
         renderItem={(task, index) => (
           <List.Item
             actions={[
-              <Button type="primary" onClick={() => handleComplete(task.id)}>
+              <Button
+                key={task.id}
+                type="primary"
+                onClick={() => handleComplete(task.id)}
+                disabled={task.completed}
+              >
                 Complete
               </Button>,
-              <Button danger onClick={() => handleDelete(task.id)}>
+              <Button
+                key={task.id}
+                danger
+                onClick={() => handleDelete(task.id)}
+              >
                 Delete
               </Button>,
-              <Button>Edit</Button>,
+              <Button key={task.id}>Edit</Button>,
             ]}
           >
             <div>
               <strong>
                 {index + 1}. {task.taskTitle}
               </strong>
-              <div>Task Body: {task.taskDescription}</div>
+              <div>Task Details: {task.taskDescription}</div>
             </div>
+
             <div style={{ marginLeft: "auto" }}>
-              <span style={{ marginRight: 8 }}>{task.taskPriority}</span>{" "}
+              <div>
+                <span style={{ color: task.completed ? "green" : "red" }}>
+                  <b>Status: </b>
+                  {task.completed ? "Task Completed" : "Task Incomplete"}
+                </span>
+              </div>
+              <span style={{ marginRight: 8 }}>
+                <b>Priority: </b> {task.taskPriority}
+              </span>
             </div>
           </List.Item>
         )}
