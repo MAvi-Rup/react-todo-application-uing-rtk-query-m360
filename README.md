@@ -1,8 +1,20 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# M360 ICT React Developer Assignment
 
-Currently, two official plugins are available:
+In this React Developer Assignment I make a Todo Application using React.js, JavaScript, Redux Toolkit and Localstorage functionality.
+I use vite for this project and my Frontend Implementation I use React ANT Design components. Here I given the Live Link of my Project and Step to Installation of my Project. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Live Site Link - https://dashing-buttercream-77a628.netlify.app/
+
+
+
+## Installation
+
+Install My Todo Application with npm
+
+```bash
+  cd react-todo-application-uing-rtk-query-m360
+  npm install
+  npm run dev
+```
+    
