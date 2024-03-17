@@ -11,11 +11,14 @@ const { Option } = Select;
 
 const TaskList = () => {
   const tasks = useSelector((state) => state.task.taskList);
+  const priorityFilter = useSelector(
+    (state) => state.priorityFilter.priorityFilter
+  );
   const dispatch = useDispatch();
   const [editId, setEditId] = useState(null);
   const [editedTaskTitle, setEditedTaskTitle] = useState("");
   const [editedTaskDescription, setEditedTaskDescription] = useState("");
-  const [editedTaskPriority, setEditedTaskPriority] = useState("Low");
+  const [editedTaskPriority, setEditedTaskPriority] = useState("");
 
   const handleComplete = (id) => {
     dispatch(completeTask(id));
@@ -59,14 +62,18 @@ const TaskList = () => {
     setEditId(null);
     setEditedTaskTitle("");
     setEditedTaskDescription("");
-    setEditedTaskPriority("Low");
+    setEditedTaskPriority("");
   };
+
+  const filteredTasks = priorityFilter
+    ? tasks.filter((task) => task.taskPriority === priorityFilter)
+    : tasks;
 
   return (
     <div>
       <h2>All Tasks</h2>
       <List
-        dataSource={tasks}
+        dataSource={filteredTasks}
         renderItem={(task, index) => (
           <List.Item
             actions={[
