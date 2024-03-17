@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 const CounterTask = () => {
   const tasks = useSelector((state) => state.task.taskList);
 
-  const completedTasksCount = tasks.filter((task) => task.completed).length;
-  const incompleteTasksCount = tasks.filter((task) => !task.completed).length;
+  const completedTasksCount = tasks?.filter((task) => task.completed).length;
+  const incompleteTasksCount = tasks?.filter((task) => !task.completed).length;
 
   return (
-    <div style={{ marginTop: "3rem" }}>
+    <div style={{ marginTop: "5rem" }}>
       <Row gutter={[16, 16]} justify="center">
         <Col xs={24} sm={12} md={12} lg={8} xl={8}>
           <Card
