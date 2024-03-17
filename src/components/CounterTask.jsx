@@ -8,7 +8,7 @@ const CounterTask = () => {
   const incompleteTasksCount = tasks?.filter((task) => !task.completed).length;
 
   return (
-    <div style={{ marginTop: "5rem" }}>
+    <div style={{ marginTop: "5rem", marginBottom: "5rem" }}>
       <Row gutter={[16, 16]} justify="center">
         <Col xs={24} sm={12} md={12} lg={8} xl={8}>
           <Card
