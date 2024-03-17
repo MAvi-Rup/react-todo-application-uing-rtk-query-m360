@@ -1,7 +1,7 @@
 import { Button, Form, Input, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTask } from "../redux/features/TaskFeatures/taskSlice";
 
 const { Option } = Select;
@@ -12,12 +12,11 @@ const AddTaskForm = () => {
   const [taskPriority, setTaskPriority] = useState("Low");
   const dispatch = useDispatch();
   const [lastId, setLastId] = useState(0);
-  const tasks = useSelector((state) => state.task.taskList);
 
   const handleReset = () => {
     setTaskTitle("");
     setTaskDescription("");
-    setTaskPriority("");
+    setTaskPriority("Low");
   };
 
   const handleTaskAdded = () => {
@@ -31,7 +30,6 @@ const AddTaskForm = () => {
     };
     dispatch(addTask(newTask));
     setLastId(newId);
-    localStorage.setItem("taskList", JSON.stringify([...tasks, newTask]));
     handleReset();
   };
 
@@ -62,7 +60,7 @@ const AddTaskForm = () => {
         </Form.Item>
         <Form.Item>
           <Select
-            required
+            value={taskPriority}
             onChange={(value) => setTaskPriority(value)}
             style={{ width: 120 }}
           >

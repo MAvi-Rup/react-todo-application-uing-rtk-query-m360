@@ -71,7 +71,7 @@ const TaskList = () => {
           <List.Item
             actions={[
               <Button
-                key={`complete-${task.id}`}
+                key={task.id}
                 type="primary"
                 onClick={() => handleComplete(task.id)}
                 disabled={task.completed}
@@ -79,23 +79,19 @@ const TaskList = () => {
                 Complete
               </Button>,
               <Button
-                key={`delete-${task.id}`}
+                key={task.id}
                 danger
                 onClick={() => handleDelete(task.id)}
               >
                 Delete
               </Button>,
               editId === task.id ? (
-                <Button
-                  key={`submit-${task.id}`}
-                  type="primary"
-                  onClick={handleEditSubmit}
-                >
+                <Button key={task.id} type="primary" onClick={handleEditSubmit}>
                   Submit
                 </Button>
               ) : (
                 <Button
-                  key={`edit-${task.id}`}
+                  key={task.id}
                   onClick={() =>
                     handleEdit(
                       task.id,
@@ -111,7 +107,7 @@ const TaskList = () => {
             ]}
           >
             {editId === task.id ? (
-              <div>
+              <div style={{ padding: "1rem" }}>
                 <Input
                   name="title"
                   value={editedTaskTitle}
